@@ -13,7 +13,7 @@ namespace DDoSAttack
 {
     public partial class Form1 : Form
     {
-        List<Process> ListOfProcesses = new List<Process>();
+        static List<Process> ListOfProcesses = new List<Process>();
         public Form1()
         {
             InitializeComponent();
@@ -39,7 +39,8 @@ namespace DDoSAttack
                 {
                     Process process = new Process();
                     process = Process.Start("explorer", url);
-                    ListOfProcesses.Add(process);
+                    if (process != null)
+                        ListOfProcesses.Append(process);
                 }
             }
             catch (Exception ex)
@@ -52,7 +53,7 @@ namespace DDoSAttack
         {
             for (int i = 0; i < ListOfProcesses.Count; i++)
             {
-                ListOfProcesses.ElementAt(i).Kill();
+                (ListOfProcesses[i]).Kill();
             }
         }
     }
