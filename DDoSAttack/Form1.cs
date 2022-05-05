@@ -32,10 +32,9 @@ namespace DDoSAttack
         {
             int times = int.Parse(textBox1.Text);
             String url = textBox2.Text.Trim();
-            url = "/new-window " + url;
             for (int i=0; i<times; i++) 
             {
-                Process.Start("chrome.exe", url);
+                Process.Start("explorer", url);
             }
         }
     }
