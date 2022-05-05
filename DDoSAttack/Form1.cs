@@ -30,12 +30,20 @@ namespace DDoSAttack
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int times = int.Parse(textBox1.Text);
-            String url = textBox2.Text.Trim();
-            for (int i=0; i<times; i++) 
+            try
             {
-                Process.Start("explorer", url);
+                int times = int.Parse(textBox1.Text);
+                String url = textBox2.Text.Trim();
+                for (int i = 0; i < times; i++)
+                {
+                    Process.Start("explorer", url);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }
