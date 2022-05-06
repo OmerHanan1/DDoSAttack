@@ -8,16 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Threading;
 
 namespace DDoSAttack
 {
     public partial class Form1 : Form
     {
-        public List<Process> ListOfProcesses;
+        public List<int> ListOfProcesses;
         public Form1()
         {
             InitializeComponent();
-            ListOfProcesses = new List<Process>();
+            ListOfProcesses = new List<int>();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -41,7 +42,8 @@ namespace DDoSAttack
                     Process process = new Process();
                     process = Process.Start("explorer", url);
                     if (process != null)
-                        ListOfProcesses.Add(process);
+                        this.ListOfProcesses.Add(process.Id);
+                    Thread.Sleep(100);
                 }
             }
             catch (Exception ex)
@@ -54,7 +56,7 @@ namespace DDoSAttack
         {
             for (int i = 0; i < ListOfProcesses.Count; i++)
             {
-                (ListOfProcesses[i]).Kill();
+                Process.GetProcessById(this.ListOfProcesses[i]).Kill();
             }
         }
     }
