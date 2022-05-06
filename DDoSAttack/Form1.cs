@@ -56,7 +56,14 @@ namespace DDoSAttack
         {
             for (int i = 0; i < ListOfProcesses.Count; i++)
             {
-                Process.GetProcessById(this.ListOfProcesses[i]).Kill();
+                try
+                {
+                    Process.GetProcessById(this.ListOfProcesses[i]).Kill(true);
+                }
+                catch
+                {
+                    //
+                }
             }
         }
     }
