@@ -13,10 +13,11 @@ namespace DDoSAttack
 {
     public partial class Form1 : Form
     {
-        static List<Process> ListOfProcesses = new List<Process>();
+        public List<Process> ListOfProcesses;
         public Form1()
         {
             InitializeComponent();
+            ListOfProcesses = new List<Process>();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace DDoSAttack
                     Process process = new Process();
                     process = Process.Start("explorer", url);
                     if (process != null)
-                        ListOfProcesses.Append(process);
+                        ListOfProcesses.Add(process);
                 }
             }
             catch (Exception ex)
