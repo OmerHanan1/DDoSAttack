@@ -54,17 +54,10 @@ namespace DDoSAttack
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < ListOfProcesses.Count; i++)
-            {
-                try
-                {
-                    Process.GetProcessById(this.ListOfProcesses[i]).Kill(true);
-                }
-                catch
-                {
-                    //
-                }
-            }
+            Process[] chromeInstances = Process.GetProcessesByName("chrome");
+
+            foreach (Process p in chromeInstances)
+                p.Kill();
         }
     }
 }
